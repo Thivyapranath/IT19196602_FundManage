@@ -26,6 +26,12 @@ public class Fund {
 	     return con;
 	 } 
 	
+	
+	
+	
+	
+	//Insert 
+	
 	public String insertFund(String fname , String faddress, String fphone ,String femail,String fdesc)
 	 {
 	 
@@ -57,17 +63,23 @@ public class Fund {
 	
 	        preparedStmt.execute();
 	        con.close();
-	        output = "Inserted successfully";
+	        String newFunds = readFund();
+	        output = "{\"status\":\"success\", \"data\": \"" +newFunds + "\"}"; 
 	
 		}catch (Exception e){
 	 
-			output = "Error while inserting the fund";
+			output = "{\"status\":\"error\", \"data\":\"Error while inserting the item.\"}";
 	        System.err.println(e.getMessage());
 	 
 		}
 	
 		return output;
 	 } 
+	
+	
+	
+	
+	//Read
 	
 	public String readFund(){
 	 
@@ -135,6 +147,12 @@ public class Fund {
 		return output;
 	 } 
 	
+	
+	
+	
+	
+	//Update Function
+	
 	public String updateFund(String fund_id , String fname , String faddress, String fphone ,String femail,String fdesc){
 	 
 		String output = "";
@@ -163,17 +181,25 @@ public class Fund {
 	        // execute the statement
 	        preparedStmt.execute();
 	        con.close();
-	        output = "Updated successfully";
+	        String newFunds = readFund();
+	        output = "{\"status\":\"success\", \"data\": \"" +newFunds + "\"}";
+	        
 	 
 		}catch (Exception e){
 	 
-			output = "Error while updating the fund.";
+			output = "{\"status\":\"error\", \"data\":\"Error while updating the item.\"}";
 	        System.err.println(e.getMessage());
 	 
 		}
 	
 		return output;
 	 } 
+	
+	
+	
+	
+	
+	//Delete Function
 	
 	public String deleteFund(String fund_id){
 	 
@@ -197,12 +223,13 @@ public class Fund {
 	         // execute the statement
 	         preparedStmt.execute();
 	         con.close();
-	         output = "Deleted successfully";
+	         String newFunds = readFund();
+	         output = "{\"status\":\"success\", \"data\": \"" +newFunds + "\"}";
 	
 		}catch (Exception e){
 			
 	 
-			output = "Error while deleting the fund.";
+			output = "{\"status\":\"error\", \"data\":\"Error while deleting the item.\"}";
 	        System.err.println(e.getMessage());
 	
 		}
